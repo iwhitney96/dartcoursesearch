@@ -2,8 +2,7 @@ import urllib2
 from BeautifulSoup import BeautifulSoup
 import os
 import pdb
-import MySQLdb
-
+from database import Database
 
 class Scraper(object):
 
@@ -17,6 +16,7 @@ class Scraper(object):
     #end
 
     def get_classes(self):
+        database = Database()
         table = self.soup.findAll('table')
         everyrow = table[0].findAll("tr")
         for row in everyrow:
@@ -32,7 +32,10 @@ class Scraper(object):
             Instructor = self.assign(ClassInfo[11].text)
             WC = self.assign(ClassInfo[12].text)
             Dist = self.assign(ClassInfo[13].text)
-            print Crn, Dept, Num, Sec, Time, Instructor, WC,Dist
+
+            database.insert_course(Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist)
+            print Crn, Dept, Num, Title, Sec, Time, Instructor, WC,Dist
+
 
     def assign(self, text):
         if text == "&nbsp;":
@@ -107,3 +110,30 @@ class Scraper(object):
                 continue
 
             print term, dept, classnum, enrollment, grade
+
+'''
+CREATE TABLE 17s(
+    crn MEDIUMINT,
+    coursedept TINYTEXT,
+    coursenum FLOAT,
+    coursetitle TINYTEXT,
+    coursesec TINYTEXT,
+    coursetime VARCHAR(100),
+    instructor VARCHAR(100),
+    wc VARCHAR(10),
+    dist VARCHAR(10)
+    );
+
+
+INSERT INTO seventeenspring(crn,coursedept,coursenum,coursetitle,sec,coursetime,instructor,wc,dist)
+
+cursor.execute("""
+        INSERT INTO seventeenspring
+            (crn,coursedept,coursenum,coursetitle,sec,coursetime,instructor,wc,dist)
+        VALUES
+            (%d, %s, %f, %s, %s, %s, %s, %s, %s)
+                   """, (Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist)
+
+                  )
+
+'''

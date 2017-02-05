@@ -1,3 +1,4 @@
 virtualenv==15.1.0 #sets up virtual environment
 beautifulsoup4==4.5.3 #for HTML scraping
-Django==1.10.5 
+Django==1.10.5
+mysql db==0.0.1

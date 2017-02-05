@@ -1,4 +1,4 @@
 from scraper import Scraper
 
-scraper = Scraper("16f.html")
-scraper.get_median_grades()
+scraper = Scraper("dartmouth_course_catalogue.html")
+scraper.get_classes()
