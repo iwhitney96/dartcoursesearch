@@ -110,30 +110,3 @@ class Scraper(object):
                 continue
 
             print term, dept, classnum, enrollment, grade
-
-'''
-CREATE TABLE 17s(
-    crn MEDIUMINT,
-    coursedept TINYTEXT,
-    coursenum FLOAT,
-    coursetitle TINYTEXT,
-    coursesec TINYTEXT,
-    coursetime VARCHAR(100),
-    instructor VARCHAR(100),
-    wc VARCHAR(10),
-    dist VARCHAR(10)
-    );
-
-
-INSERT INTO seventeenspring(crn,coursedept,coursenum,coursetitle,sec,coursetime,instructor,wc,dist)
-
-cursor.execute("""
-        INSERT INTO seventeenspring
-            (crn,coursedept,coursenum,coursetitle,sec,coursetime,instructor,wc,dist)
-        VALUES
-            (%d, %s, %f, %s, %s, %s, %s, %s, %s)
-                   """, (Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist)
-
-                  )
-
-'''
