@@ -15,30 +15,16 @@ class Database(object):
 
     def insert_course(self, Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist):
         try:
-            #pdb.set_trace()
             query = """INSERT INTO 17s (crn,coursedept,coursenum,coursetitle,coursesec,coursetime,instructor,wc,dist) VALUES (%d, %s, %f, %s, %s, %s, %s, %s, %s)""" % (int(Crn), "\"" + str(Dept) + "\"", float(Num), "\"" + str(Title) + "\"", "\"" + str(Sec) + "\"", "\"" + str(Time) + "\"", "\"" + str(Instructor) + "\"", "\"" + str(WC) + "\"","\"" + str(Dist) + "\"")
             self.cursor.execute(query)
             self.connection.commit()
         except Error as error:
-            pdb.set_trace()
-
             self.connection.rollback()
 
-'''
-CREATE TABLE 17s(
-    crn MEDIUMINT,
-    coursedept TINYTEXT,
-    coursenum FLOAT,
-    coursetitle TINYTEXT,
-    coursesec TINYTEXT,
-    coursetime VARCHAR(100),
-    instructor VARCHAR(100),
-    wc VARCHAR(10),
-    dist VARCHAR(10)
-    );
-
-
-INSERT QUERY
-query = """INSERT INTO 17s (crn,coursedept,coursenum,coursetitle,coursesec,coursetime,instructor,wc,dist) VALUES (%d, %s, %f, %s, %s, %s, %s, %s, %s)""" % (int(Crn), "\"" + str(Dept) + "\"", float(Num), "\"" + str(Title) + "\"", "\"" + str(Sec) + "\"", "\"" + str(Time) + "\"", "\"" + str(Instructor) + "\"", "\"" + str(WC) + "\"","\"" + str(Dist) + "\"")
-
-'''
+    def insert_median(self, Term, Dept, Num, Median, Enrollment):
+        try:
+            query = """INSERT INTO medians (term,coursedept,coursenum,median,enrollment) VALUES (%s, %s, %f, %f, %d)""" % ("\"" + str(Term) + "\"", "\"" + str(Dept) + "\"", float(Num), float(Median), int(Enrollment))
+            self.cursor.execute(query)
+            self.connection.commit()
+        except Error as error:
+            self.connection.rollback()

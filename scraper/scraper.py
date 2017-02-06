@@ -96,6 +96,7 @@ class Scraper(object):
 
 
     def get_median_grades(self):
+        database = Database()
         table = self.soup.findAll('table')
         everyrow = table[0].findAll("tr")
         for row in everyrow:
@@ -108,5 +109,5 @@ class Scraper(object):
             grade = self.process_grades(ClassInfo[3].text)
             if grade == -1:
                 continue
-
+            database.insert_median(term, dept, classnum, grade, enrollment)
             print term, dept, classnum, enrollment, grade

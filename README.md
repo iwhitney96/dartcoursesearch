@@ -44,6 +44,15 @@ CREATE TABLE 17s(
     dist VARCHAR(10)
     );
 ```
+```
+CREATE TABLE medians(
+    term TINYTEXT,
+    coursedept TINYTEXT,
+    coursenum FLOAT,
+    median FLOAT,
+    enrollment SMALLINT
+    );
+```
 
 
 ### Notes on Database Troubles
