@@ -45,7 +45,8 @@ CREATE TABLE 17s(
     coursetime VARCHAR(100),
     instructor VARCHAR(100),
     wc VARCHAR(10),
-    dist VARCHAR(10)
+    dist VARCHAR(10),
+    median FLOAT
     );
 ```
 ```
@@ -57,14 +58,19 @@ CREATE TABLE medians(
     enrollment SMALLINT
     );
 ```
+7. ``` cd scraper; Python populate_database.py ```
+
+8. To delete a table use ``` drop table __TABLENAME__;``` in the mySQL shell
+9. To display all rows use ``` SELECT * FROM __TABLENAME__;``` in the mySQL shell
+10. To display certain rows based on colums use ``` SELECT * FROM __TABLENAME__ where __COLUMNNAME__ = __WHATEVER__ and ...;```
 
 
 ### Notes on Database Troubles
 
-If you get the message
+1. If you get the message
 ```
 ImportError: dlopen(/Users/USER/Documents/dartcoursesearch/venv/lib/python2.7/site-packages/_mysql.so, 2): Library not loaded: libcrypto.1.0.0.dylib
   Referenced from: /Users/ianwhitney/Documents/dartcoursesearch/venv/lib/python2.7/site-packages/_mysql.so
   ```
-run the following command in your terminal
+  Then the following command in your terminal
 ``` sudo ln -s /usr/local/Cellar/openssl/1.0.2j/lib/libcrypto.1.0.0.dylib /usr/local/lib/libcrypto.1.0.0.dylib ```

@@ -15,7 +15,7 @@ class Scraper(object):
         return BeautifulSoup(html)
     #end
 
-    def get_classes(self):
+    def add_classes(self):
         database = Database()
         table = self.soup.findAll('table')
         everyrow = table[0].findAll("tr")
@@ -32,22 +32,25 @@ class Scraper(object):
             Instructor = self.assign(ClassInfo[11].text)
             WC = self.assign(ClassInfo[12].text)
             Dist = self.assign(ClassInfo[13].text)
+            median = database.get_median(Dept, Num)
 
-            database.insert_course(Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist)
+            database.insert_course(Crn, Dept, Num, Title, Sec, Time, Instructor, WC, Dist, median)
             print Crn, Dept, Num, Title, Sec, Time, Instructor, WC,Dist
-
+        #end
 
     def assign(self, text):
         if text == "&nbsp;":
             return "NONE"
         else:
             return text.replace("&nbsp;","")
+        #end
 
     def chunk_classes(self, text):
         chunkedstring = text.split('-')
         if len(chunkedstring) is not 3:
             return -1, -1
         return chunkedstring[0], chunkedstring[1]
+        #end
 
     def process_grades(self, grade):
         if grade == 'A':
@@ -92,10 +95,10 @@ class Scraper(object):
             return 0.000
         else:
             return -1
+        #end
 
 
-
-    def get_median_grades(self):
+    def add_median_grades(self):
         database = Database()
         table = self.soup.findAll('table')
         everyrow = table[0].findAll("tr")
@@ -111,3 +114,4 @@ class Scraper(object):
                 continue
             database.insert_median(term, dept, classnum, grade, enrollment)
             print term, dept, classnum, enrollment, grade
+        #end
