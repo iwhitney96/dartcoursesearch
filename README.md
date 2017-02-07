@@ -23,6 +23,10 @@ the HTML and copy it into a document. Search for ``` <div class="data-table"> ``
 and then delete everything above that line. find the next ``` </table> ``` and
 then delete everything below that line. Then do find and replace ```</tr>``` with ```</tr><tr>``` Then run the document through the scraper
 
+To update with new median grades download the HTML and then look for ``` <p>These medians have been calculated using grades available as of December 6, 2016. Medians will be recalculated at the end of the 2017 Winter term to account for grade changes, resolutions of Incompletes, etc.</p> ``` delete everything above that and delete everything below the closing ``` </table> ``` tag
+
+
+
 
 
 ### Setup Database
