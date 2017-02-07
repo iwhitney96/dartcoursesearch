@@ -13,7 +13,7 @@ Clone the github repository
 
 
 ### To start the project
-. ./venv/bin/activate
+```. ./venv/bin/activate```
 
 
 ### Notes on data processing:
